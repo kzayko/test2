@@ -1,0 +1,204 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    deployment.kubernetes.io/revision: "1"
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"apps/v1","kind":"Deployment","metadata":{"annotations":{},"labels":{"app":"reviews","version":"v3"},"name":"reviews-v3","namespace":"bookinfo"},"spec":{"replicas":2,"selector":{"matchLabels":{"app":"reviews","version":"v3"}},"template":{"metadata":{"labels":{"app":"reviews","version":"v3"}},"spec":{"containers":[{"env":[{"name":"LOG_DIR","value":"/tmp/logs"}],"image":"docker.io/istio/examples-bookinfo-reviews-v3:1.15.0","imagePullPolicy":"IfNotPresent","name":"reviews","ports":[{"containerPort":9080}],"volumeMounts":[{"mountPath":"/tmp","name":"tmp"},{"mountPath":"/opt/ibm/wlp/output","name":"wlp-output"}]}],"serviceAccountName":"bookinfo-reviews","volumes":[{"emptyDir":{},"name":"wlp-output"},{"emptyDir":{},"name":"tmp"}]}}}}
+  creationTimestamp: "2020-10-08T11:41:41Z"
+  generation: 1
+  labels:
+    app: reviews
+    version: v3
+  managedFields:
+  - apiVersion: apps/v1
+    fieldsType: FieldsV1
+    fieldsV1:
+      f:metadata:
+        f:annotations:
+          .: {}
+          f:kubectl.kubernetes.io/last-applied-configuration: {}
+        f:labels:
+          .: {}
+          f:app: {}
+          f:version: {}
+      f:spec:
+        f:progressDeadlineSeconds: {}
+        f:replicas: {}
+        f:revisionHistoryLimit: {}
+        f:selector:
+          f:matchLabels:
+            .: {}
+            f:app: {}
+            f:version: {}
+        f:strategy:
+          f:rollingUpdate:
+            .: {}
+            f:maxSurge: {}
+            f:maxUnavailable: {}
+          f:type: {}
+        f:template:
+          f:metadata:
+            f:labels:
+              .: {}
+              f:app: {}
+              f:version: {}
+          f:spec:
+            f:containers:
+              k:{"name":"reviews"}:
+                .: {}
+                f:env:
+                  .: {}
+                  k:{"name":"LOG_DIR"}:
+                    .: {}
+                    f:name: {}
+                    f:value: {}
+                f:image: {}
+                f:imagePullPolicy: {}
+                f:name: {}
+                f:ports:
+                  .: {}
+                  k:{"containerPort":9080,"protocol":"TCP"}:
+                    .: {}
+                    f:containerPort: {}
+                    f:protocol: {}
+                f:resources: {}
+                f:terminationMessagePath: {}
+                f:terminationMessagePolicy: {}
+                f:volumeMounts:
+                  .: {}
+                  k:{"mountPath":"/opt/ibm/wlp/output"}:
+                    .: {}
+                    f:mountPath: {}
+                    f:name: {}
+                  k:{"mountPath":"/tmp"}:
+                    .: {}
+                    f:mountPath: {}
+                    f:name: {}
+            f:dnsPolicy: {}
+            f:restartPolicy: {}
+            f:schedulerName: {}
+            f:securityContext: {}
+            f:serviceAccount: {}
+            f:serviceAccountName: {}
+            f:terminationGracePeriodSeconds: {}
+            f:volumes:
+              .: {}
+              k:{"name":"tmp"}:
+                .: {}
+                f:emptyDir: {}
+                f:name: {}
+              k:{"name":"wlp-output"}:
+                .: {}
+                f:emptyDir: {}
+                f:name: {}
+    manager: kubectl
+    operation: Update
+    time: "2020-10-08T11:41:41Z"
+  - apiVersion: apps/v1
+    fieldsType: FieldsV1
+    fieldsV1:
+      f:metadata:
+        f:annotations:
+          f:deployment.kubernetes.io/revision: {}
+      f:status:
+        f:availableReplicas: {}
+        f:conditions:
+          .: {}
+          k:{"type":"Available"}:
+            .: {}
+            f:lastTransitionTime: {}
+            f:lastUpdateTime: {}
+            f:message: {}
+            f:reason: {}
+            f:status: {}
+            f:type: {}
+          k:{"type":"Progressing"}:
+            .: {}
+            f:lastTransitionTime: {}
+            f:lastUpdateTime: {}
+            f:message: {}
+            f:reason: {}
+            f:status: {}
+            f:type: {}
+        f:observedGeneration: {}
+        f:readyReplicas: {}
+        f:replicas: {}
+        f:updatedReplicas: {}
+    manager: kube-controller-manager
+    operation: Update
+    time: "2020-10-08T11:43:47Z"
+  name: reviews-v3
+  namespace: bookinfo
+  resourceVersion: "8943"
+  selfLink: /apis/apps/v1/namespaces/bookinfo/deployments/reviews-v3
+  uid: ba929829-1e95-4e90-9887-3a238061b344
+spec:
+  progressDeadlineSeconds: 600
+  replicas: 2
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      app: reviews
+      version: v3
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: reviews
+        version: v3
+    spec:
+      containers:
+      - env:
+        - name: LOG_DIR
+          value: /tmp/logs
+        image: docker.io/istio/examples-bookinfo-reviews-v3:1.15.0
+        imagePullPolicy: IfNotPresent
+        name: reviews
+        ports:
+        - containerPort: 9080
+          protocol: TCP
+        resources: {}
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+        volumeMounts:
+        - mountPath: /tmp
+          name: tmp
+        - mountPath: /opt/ibm/wlp/output
+          name: wlp-output
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      serviceAccount: bookinfo-reviews
+      serviceAccountName: bookinfo-reviews
+      terminationGracePeriodSeconds: 30
+      volumes:
+      - emptyDir: {}
+        name: wlp-output
+      - emptyDir: {}
+        name: tmp
+status:
+  availableReplicas: 2
+  conditions:
+  - lastTransitionTime: "2020-10-08T11:43:47Z"
+    lastUpdateTime: "2020-10-08T11:43:47Z"
+    message: Deployment has minimum availability.
+    reason: MinimumReplicasAvailable
+    status: "True"
+    type: Available
+  - lastTransitionTime: "2020-10-08T11:41:41Z"
+    lastUpdateTime: "2020-10-08T11:43:47Z"
+    message: ReplicaSet "reviews-v3-7f66977689" has successfully progressed.
+    reason: NewReplicaSetAvailable
+    status: "True"
+    type: Progressing
+  observedGeneration: 1
+  readyReplicas: 2
+  replicas: 2
+  updatedReplicas: 2
